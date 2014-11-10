@@ -1,5 +1,18 @@
 class PublicIcal::Event < SimpleDelegator
 
+  def ical_event
+    Icalendar::Event.new.tap do |e|
+      e.summary = title
+      e.dtstart = date
+      e.dtstart.ical_params = { VALUE: "DATE" }
+      e.dtend = end_date
+      e.dtend.ical_params = { VALUE: "DATE" }
+      e.location = location
+    end
+  end
+
+  private
+
   def title
     search('.info a').first.text
   end
@@ -15,19 +28,6 @@ class PublicIcal::Event < SimpleDelegator
   def end_date
     PublicIcal::Date.new(end_date_text).date || date + 1.day
   end
-
-  def ical_event
-    Icalendar::Event.new.tap do |e|
-      e.summary = title
-      e.dtstart = date
-      e.dtstart.ical_params = { VALUE: "DATE" }
-      e.dtend = end_date
-      e.dtend.ical_params = { VALUE: "DATE" }
-      e.location = location
-    end
-  end
-
-  private
 
   def date_text
     search('.date').text.squish.downcase

@@ -15,12 +15,10 @@ class PublicIcal::Date < SimpleDelegator
     end
   end
 
+  private
+
   def year
-    if month < Date.today.month
-      Date.today.year + 1
-    else
-      Date.today.year
-    end
+    Date.today.year + month < Date.today.month ? 1 : 0
   end
 
   def month
