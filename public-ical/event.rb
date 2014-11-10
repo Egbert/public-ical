@@ -20,7 +20,9 @@ class PublicIcal::Event < SimpleDelegator
     Icalendar::Event.new.tap do |e|
       e.summary = title
       e.dtstart = date
+      e.dtstart.ical_params = { VALUE: "DATE" }
       e.dtend = end_date
+      e.dtend.ical_params = { VALUE: "DATE" }
       e.location = location
     end
   end
