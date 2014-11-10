@@ -11,7 +11,15 @@ class PublicIcal::Date < SimpleDelegator
     when 'morgen'
       ::Date.tomorrow
     else
-      ::Date.new(Date.today.year, month, day)
+      ::Date.new(year, month, day)
+    end
+  end
+
+  def year
+    if month < Date.today.month
+      Date.today.year + 1
+    else
+      Date.today.year
     end
   end
 
