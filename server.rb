@@ -10,7 +10,7 @@ github/markup
 ".lines.map(&:strip).each &method(:require)
 
 get '/public.ics' do
-  response.headers['Content-type'] = 'text/calendar; charset=utf-8'
+  response.headers['Content-type'] = 'text/calendar; charset=utf-8' unless params[:debug]
   PublicIcal::Calendar.new.icalendar.to_ical
 end
 

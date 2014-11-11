@@ -18,7 +18,7 @@ class PublicIcal::Date < SimpleDelegator
   private
 
   def year
-    Date.today.year + month < Date.today.month ? 1 : 0
+    Date.today.year + (month < Date.today.month ? 1 : 0)
   end
 
   def month
