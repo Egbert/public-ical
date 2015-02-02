@@ -30,10 +30,11 @@ class PublicIcal::Event < SimpleDelegator
   end
 
   def date_text
-    search('.date').text.squish.downcase
+    search('.date .normal').text.squish.downcase
   end
 
   def end_date_text
     search('.end-date span span').text.squish.downcase
   end
+
 end

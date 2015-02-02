@@ -21,8 +21,14 @@ class PublicIcal::Date < SimpleDelegator
     Date.today.year + (month < Date.today.month ? 1 : 0)
   end
 
+  def month_index
+    MONTHS.index(month_text).tap do |index|
+      raise "month #{month_text} not valid" unless index
+    end
+  end
+
   def month
-    MONTHS.index(month_text) + 1
+    month_index + 1
   end
 
   def month_text
