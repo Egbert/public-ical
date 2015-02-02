@@ -6,6 +6,4 @@ Events organised by [Public](http://wearepublic.nl) in a nice iCal format for ad
 - open Google Calendar
 - click on the small down arrow next to 'Other calendars'
 - choose 'add by URL'
-- paste that damn fine URL
-- ???
-- profit!
+- paste the link you copied
