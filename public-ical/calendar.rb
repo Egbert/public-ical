@@ -2,7 +2,7 @@ class PublicIcal::Calendar
 
   def icalendar
     Icalendar::Calendar.new.tap do |c|
-      events.map(&:ical_event).each &c.method(:add_event)
+      events.map(&:ical_event).compact.each &c.method(:add_event)
     end
   end
 

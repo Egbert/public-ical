@@ -1,24 +1,26 @@
 class PublicIcal::Event < SimpleDelegator
 
   def ical_event
-    Icalendar::Event.new.tap do |e|
-      e.summary = title
-      e.dtstart = date
-      e.dtstart.ical_params = { VALUE: "DATE" }
-      e.dtend = end_date
-      e.dtend.ical_params = { VALUE: "DATE" }
-      e.location = location
+    if date
+      Icalendar::Event.new.tap do |e|
+        e.summary = title
+        e.dtstart = date
+        e.dtstart.ical_params = { VALUE: "DATE" }
+        e.dtend = end_date
+        e.dtend.ical_params = { VALUE: "DATE" }
+        e.location = location
+      end
     end
   end
 
   private
 
   def title
-    search('.info a').first.text
+    search('.info a').first.try :text
   end
 
   def location
-    search('.info a').last.text
+    search('.info a').last.try :text
   end
 
   def date
