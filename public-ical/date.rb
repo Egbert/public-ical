@@ -1,6 +1,6 @@
 class PublicIcal::Date < SimpleDelegator
 
-  MONTHS = %w[jan feb maa apr mei jun jul aug sep okt nov dec]
+  MONTHS = %w[jan feb mrt apr mei jun jul aug sep okt nov dec]
 
   def date
     case self
